@@ -4,7 +4,7 @@ namespace TechChallenge_FIAP_API.Application.Interface
 {
     public interface IInvestimentoService
     {
-        Task<DadosAtivo> ObterDadosAtivo(string nomeAtivo);
-        Task<List<ListaAtivos>> ObterListaAtivos();
+        Task<DadosAtivo> ObterDadosAtivoPorNome(string nomeAtivo);
+        Task<ListaAtivos> ObterListaAtivos();
     }
 }
