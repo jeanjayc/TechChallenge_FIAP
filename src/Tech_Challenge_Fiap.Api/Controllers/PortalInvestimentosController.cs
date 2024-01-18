@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using TechChallenge_FIAP_API.Application.Interface;
+using TechChallenge_FIAP_API.Domain.Entities;
 
 namespace TechChallenge_FIAP_API.Controllers
 {
@@ -17,7 +19,8 @@ namespace TechChallenge_FIAP_API.Controllers
         [HttpGet]
         public async Task<IActionResult> ObterAcaoPorNome(string nome)
         {
-            var result = await _investimentoService.ObterDadosAtivoPorNome(nome);
+            var resultadoRequisicao = await _investimentoService.ObterDadosAtivoPorNome(nome);
+            var result = JsonConvert.DeserializeObject<DadosAtivo>(resultadoRequisicao.Content);
             return Ok(result);
         }
 

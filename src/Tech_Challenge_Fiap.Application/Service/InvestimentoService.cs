@@ -15,21 +15,26 @@ namespace TechChallenge_FIAP_API.Application.Service
             _configuration = configuration;
         }
 
-        public async Task<DadosAtivo> ObterDadosAtivoPorNome(string nomeAtivo)
+        public InvestimentoService()
         {
-            var url = _configuration.GetSection("url").Value;
+            
+        }
+
+        public async Task<RestResponse> ObterDadosAtivoPorNome(string nomeAtivo)
+        {
+            var url = "https://brapi.dev/api/quote/" /*_configuration.GetSection("url").Value*/;
 
             var client = new RestClient(url);
 
             var request = new RestRequest($"/{nomeAtivo}", Method.Get);
 
-            var token = _configuration.GetSection("token").Value;
+            var token = "nYGPHeqce4awYWMzy6FoGb" /*_configuration.GetSection("token").Value*/;
 
             request.AddParameter("Authorization", $"Bearer {token}", ParameterType.HttpHeader);
 
             var response = client.Execute<DadosAtivo>(request);
 
-            return response.Data;
+            return response;
 
         }
 
